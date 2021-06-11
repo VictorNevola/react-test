@@ -1,7 +1,7 @@
 import * as React from "react";
+import App from "./App";
 import { render } from "react-dom";
-import App from "./components/App";
 
 const rootEl = document.getElementById("root");
 
-render(<App />, rootEl);
+render(<React.StrictMode> <App /> </React.StrictMode>, rootEl);

@@ -5,10 +5,28 @@
     "@babel/preset-typescript"
   ],
   "plugins": [
-    "react-hot-loader/babel"
+    "react-hot-loader/babel",
+    [
+      "babel-plugin-styled-components",
+      {
+        "displayName": true,
+        "pure": false,
+        "ssr": false
+      }
+    ]
   ],
   "env": {
     "production": {
+      "plugins": [
+        [
+          "babel-plugin-styled-components",
+          {
+            "displayName": false,
+            "pure": true,
+            "ssr": false
+          }
+        ]
+      ],
       "presets": [
         "minify"
       ]

@@ -1,6 +1,8 @@
 // production config
 const { merge } = require("webpack-merge");
 const { resolve } = require("path");
+const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
+const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
 
 const commonConfig = require("./common");
 module.exports = merge(commonConfig, {
@@ -13,4 +15,7 @@ module.exports = merge(commonConfig, {
   },
   devtool: "source-map",
   plugins: [],
+  optimization: {
+    minimizer: [new OptimizeCSSAssetsPlugin(), new UglifyJsPlugin()],
+  },
 });
