@@ -15,6 +15,7 @@ module.exports = {
       '@services': resolve(__dirname, '../../src/services'),
       '@store': resolve(__dirname, '../../src/store'),
       '@resources': resolve(__dirname, '../../src/resources'),
+      '@repositories': resolve(__dirname, '../../src/repositories'),
     }
   },
   module: {

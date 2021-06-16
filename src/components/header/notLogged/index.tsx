@@ -8,7 +8,7 @@ export default function NotLoggedHeader() {
       <S.Wrapper>
         <S.Container>
           <S.logoTitle> Imeals </S.logoTitle>
-          <S.iconHelp> <IoIosHelpCircleOutline /> </S.iconHelp>
+          <S.iconHelp> <IoIosHelpCircleOutline size={28}/> </S.iconHelp>
         </S.Container>
       </S.Wrapper>
     </S.Header>

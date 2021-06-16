@@ -83,7 +83,7 @@ export const infoError = styled.span`
     line-height: 8px;
     color: ${props => props.theme.colors.error};
     height: 14px;
-    transition: ${props => props.theme.transiton.default}
+    transition: ${props => props.theme.transiton.default};
 `;
 
 export const infoDropZone = styled.em `
@@ -128,7 +128,7 @@ export const loaderContainer = styled.div`
     display: inline-block;
     border-radius: 4px;
     padding: 14px 32px;
-    background-color: ${props => props.theme.colors.primary};
+    background-color: #4189e680;
     transition: all .4s ease;
 `;
 

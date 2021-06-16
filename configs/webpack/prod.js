@@ -21,6 +21,19 @@ module.exports = merge(commonConfig, {
     }),
   ],
   optimization: {
-    minimizer: [new OptimizeCSSAssetsPlugin(), new UglifyJsPlugin()],
+    'minimize': true,
+    minimizer: [
+      new OptimizeCSSAssetsPlugin(), 
+      new UglifyJsPlugin({
+        uglifyOptions: {
+          compress: {
+            drop_console: true
+          },
+          output: {
+            comments: false
+          }
+        },
+      }),
+    ],
   },
 });

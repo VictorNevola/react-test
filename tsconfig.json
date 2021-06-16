@@ -19,12 +19,13 @@
     ],
     "baseUrl": "./",
     "paths": {
-      "@assets*": [ "src/assets/*"],
-      "@components*": [ "src/components/*"],
-      "@pages*": [ "src/pages/*"],
-      "@services*": [ "src/services/*"],
-      "@store*": [ "src/store/*"],
-      "@resources*": [ "src/resources/*"]
+      "@assets*": ["src/assets/*"],
+      "@components*": ["src/components/*"],
+      "@pages*": ["src/pages/*"],
+      "@services*": ["src/services/*"],
+      "@store*": ["src/store/*"],
+      "@resources*": ["src/resources/*"],
+      "@repositories*": ["src/repositories/*"]
     }
   }
 }

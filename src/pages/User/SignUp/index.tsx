@@ -1,24 +1,36 @@
 import React, { useState } from 'react';
 import { useForm, Controller } from "react-hook-form";
-import InputMask from 'react-input-mask';
 import { Link } from 'react-router-dom';
+import InputMask from 'react-input-mask';
+import ReactLoading from 'react-loading';
+
 import NotLoggedHeader from '@components/header/notLogged';
+
 import { cnpjValidation } from '@resources/validatorCnpj';
 import { encrypts } from '@resources/cryptr';
+
+import { createUser } from '@repositories/user';
+
 import { IDataForm } from './types';
 import * as Style from './styles';
 
 export default function SignUp(): JSX.Element {
   const { handleSubmit, control, formState: { errors } } = useForm();
   const [cnpjInvalid, setCnpjInvalid] = useState(false);
+  const [loaderActive, setLoaderActive] = useState(false);
 
   const onSubmit = async (data: IDataForm) => {
+    setLoaderActive(true);
     const cnpjIsValid = cnpjValidation(data.cnpj);
 
     if (cnpjIsValid) {
       setCnpjInvalid(false);
       data.password = await encrypts(data.password);
+      const userCreated = await createUser(data);
 
+      console.log("userCreated", userCreated)
+
+      return setLoaderActive(false);
     };
 
     return setCnpjInvalid(true);
@@ -169,8 +181,14 @@ export default function SignUp(): JSX.Element {
 
           </Style.formFields>
 
-
-          <Style.btnSubmit type="submit" value='Cadastrar' />
+          {
+            loaderActive ?
+            <Style.loaderContainer>
+              <ReactLoading type="spokes" height="32px" width="32px" />
+            </Style.loaderContainer>
+              :
+              <Style.btnSubmit type="submit" value='Cadastrar' />
+          }
 
           <Style.SpanLink>
             Já possui cadastro ?

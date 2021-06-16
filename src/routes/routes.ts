@@ -1,27 +1,25 @@
+import { lazy } from 'react';
 import IRoute from './type';
-import Home from '@pages/';
-import Dashboard from '@pages/Dashboard';
-import SignUp from '@pages/User/SignUp';
 
 const routes: IRoute[] = [
   {
     path: '/',
     name: 'Home',
-    component: Home,
+    component: lazy(() => import("@pages/")),
     exact: true,
     isPrivate: false
   },
   {
     path: '/signup',
     name: 'SignUp',
-    component: SignUp,
+    component: lazy(() => import("@pages/User/SignUp")),
     exact: true,
     isPrivate: false
   },
   {
     path: '/dashboard',
     name: 'Dashboard',
-    component: Dashboard,
+    component: lazy(() => import("@pages/Dashboard")),
     exact: true,
     isPrivate: false
   }
