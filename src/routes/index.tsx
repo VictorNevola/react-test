@@ -1,10 +1,12 @@
 import React from 'react';
+import { Provider } from "react-redux";
 import { Route, Redirect, RouteProps, RouteComponentProps } from 'react-router-dom';
 import Routes from './routes';
+import store from "@store/"
 
 export default function RouteWrapper() {
   return (
-    <>
+    <Provider store={store}>
       {Routes.map((route, index) => {
         if(route.isPrivate){
           return (<Redirect to="/" />)
@@ -24,6 +26,6 @@ export default function RouteWrapper() {
           />
         )
       })}
-    </>
+    </Provider>
   )
 }

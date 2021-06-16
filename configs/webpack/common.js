@@ -1,4 +1,6 @@
 const { resolve } = require("path");
+const Dotenv = require('dotenv-webpack');
+const NodePolyfillPlugin = require("node-polyfill-webpack-plugin");
 const HtmlWebpackPlugin = require("html-webpack-plugin");
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
@@ -11,12 +13,14 @@ module.exports = {
       '@components': resolve(__dirname, '../../src/components'),
       '@pages': resolve(__dirname, '../../src/pages'),
       '@services': resolve(__dirname, '../../src/services'),
+      '@store': resolve(__dirname, '../../src/store'),
+      '@resources': resolve(__dirname, '../../src/resources'),
     }
   },
   module: {
     rules: [{
         test: [/\.jsx?$/, /\.tsx?$/],
-        use: ["babel-loader"],
+        use: ["ts-loader"],
         exclude: /node_modules/,
       },
       {
@@ -52,6 +56,8 @@ module.exports = {
     }
   },
   plugins: [
+    new NodePolyfillPlugin(),
+    new Dotenv(),
     new HtmlWebpackPlugin({
       template: resolve(__dirname, "../../src/html/index.html.ejs")
     }),

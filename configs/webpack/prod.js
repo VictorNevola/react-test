@@ -3,6 +3,7 @@ const { merge } = require("webpack-merge");
 const { resolve } = require("path");
 const OptimizeCSSAssetsPlugin = require('optimize-css-assets-webpack-plugin');
 const UglifyJsPlugin = require('uglifyjs-webpack-plugin')
+const BundleAnalyzerPlugin = require("webpack-bundle-analyzer").BundleAnalyzerPlugin;
 
 const commonConfig = require("./common");
 module.exports = merge(commonConfig, {
@@ -14,7 +15,11 @@ module.exports = merge(commonConfig, {
     publicPath: "/",
   },
   devtool: "source-map",
-  plugins: [],
+  plugins: [
+    new BundleAnalyzerPlugin({
+      analyzerMode: "static",
+    }),
+  ],
   optimization: {
     minimizer: [new OptimizeCSSAssetsPlugin(), new UglifyJsPlugin()],
   },
