@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { useForm, Controller } from "react-hook-form";
-import { Link } from 'react-router-dom';
+import { Link, Redirect } from 'react-router-dom';
+import { toast } from "react-toastify";
 import InputMask from 'react-input-mask';
 import ReactLoading from 'react-loading';
 
@@ -28,7 +29,13 @@ export default function SignUp(): JSX.Element {
       data.password = await encrypts(data.password);
       const userCreated = await createUser(data);
 
-      console.log("userCreated", userCreated)
+      if(userCreated && userCreated.status === 201)
+        toast.success("Registrado com sucesso!",{
+          autoClose: 5000,
+          onClose: () => window.location.pathname = "/signin"
+        });
+      
+      if(userCreated && userCreated.status === 409) toast.error("Já existe um registro com esse CNPJ",{ autoClose: 5000,});
 
       return setLoaderActive(false);
     };

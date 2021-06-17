@@ -6,10 +6,10 @@ import store from "@store/"
 
 export default function RouteWrapper() {
   return (
-    <Suspense fallback={ <h1>Rendering...</h1> } > 
+    <Suspense fallback={<h1>Rendering...</h1>} >
       <Provider store={store}>
         {Routes.map((route, index) => {
-          if(route.isPrivate){
+          if (route.isPrivate) {
             return (<Redirect to="/" />)
           }
           return (

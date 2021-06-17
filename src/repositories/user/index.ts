@@ -1,37 +1,15 @@
-import api from '../../services/api';
-import useSWR from 'swr'
-import { captureCookie } from '@resources/cookies';
+import api, { useFetch } from '../../services/api';
 import { AxiosResponse, AxiosError } from 'axios'
+import { captureCookie } from '@resources/cookies';
 import { IuserPj, IDataForm, IautenticateUser, DataPayloadAutenticateUSer } from './types';
-
-let userSet: IuserPj[]
-
-const fetcherUser = (url: string, token: string) => api.get(url, { headers: { authorization: `Bearer ${token}`, } }).then((res) => res.data);
-
-export const captureUser = async (tokemUser: string) => {
-
-    const { data, error } = useSWR([`/userpj/infos`, tokemUser], fetcherUser);
-
-    return {
-        user: data,
-        error: error
-    }
-}
+import { useDispatch } from 'react-redux';
+import { setUser } from "@store/modules/user/actions"
 
 export const userLogged = async () => {
-
-    if( userSet && userSet.length > 0) return userSet;
-
+    const dispatch = useDispatch();
     const userTokem = captureCookie(process.env.IMEALS_AUTH_COOKIE || "") || "";
-    const { user } = await captureUser(userTokem);
-    
-    if(userTokem && user && user.data.length > 0){
-        userSet = user.data;
-        return userSet;
-    }
-
-    return false;
-
+    const { data, error } = useFetch('/userpj/infos', { authorization: `Bearer ${userTokem}` });
+    dispatch(setUser(data))
 }
 
 export const createUser = async (dataPayload: IDataForm) => {
