@@ -1,6 +1,5 @@
 import React from "react";
 import { hot } from "react-hot-loader";
-import { BrowserRouter, Switch } from 'react-router-dom';
 import { ToastContainer } from 'react-toastify';
 import { ThemeProvider } from 'styled-components';
 import theme from "./styles/theme";
@@ -13,12 +12,8 @@ class App extends React.Component<{}> {
     return (
       <ThemeProvider theme={theme}>
         <GlobalStyle />
-        <BrowserRouter>
-          <ToastContainer position={"top-center"}/>
-          <Switch>
-              <RouteWrapper />
-          </Switch>
-        </BrowserRouter>
+        <ToastContainer position={"top-center"} />
+        <RouteWrapper />
       </ThemeProvider>
     );
   }

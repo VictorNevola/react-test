@@ -1,33 +1,22 @@
-import React, { Suspense } from 'react';
-import { Provider } from "react-redux";
-import { Route, Redirect, RouteProps, RouteComponentProps } from 'react-router-dom';
-import Routes from './routes';
-import store from "@store/"
+import React, { Suspense, lazy } from 'react';
+import { BrowserRouter as Router, Route } from 'react-router-dom';
+import PrivateRoute from "./PrivateRoute";
+
+const Home = lazy(() => import("@pages/"));
+const SignUp = lazy(() => import("@pages/User/SignUp"));
+const SignIn = lazy(() => import("@pages/User/SignIn"));
+const Dashboard = lazy(() => import("@pages/Dashboard/"));
 
 export default function RouteWrapper() {
+
   return (
     <Suspense fallback={<h1>Rendering...</h1>} >
-      <Provider store={store}>
-        {Routes.map((route, index) => {
-          if (route.isPrivate) {
-            return (<Redirect to="/" />)
-          }
-          return (
-            <Route
-              key={index}
-              path={route.path}
-              exact={route.exact}
-              render={(props: RouteComponentProps<any>) => (
-                <route.component
-                  name={route.name}
-                  {...props}
-                  {...route.props}
-                />
-              )}
-            />
-          )
-        })}
-      </Provider>
+      <Router>
+        <Route exact path="/" component={Home} />
+        <Route exact path="/signup" component={SignUp} />
+        <Route exact path="/signin" component={SignIn} />
+        <PrivateRoute exact path="/dashboard" component={Dashboard} />
+      </Router>
     </Suspense>
   )
 }
