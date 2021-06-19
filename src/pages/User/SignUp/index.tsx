@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { useForm, Controller } from "react-hook-form";
-import { Link, Redirect } from 'react-router-dom';
+import { Link } from 'react-router-dom';
 import { toast } from "react-toastify";
 import InputMask from 'react-input-mask';
 import ReactLoading from 'react-loading';
@@ -43,7 +43,6 @@ export default function SignUp(): JSX.Element {
     return setCnpjInvalid(true);
 
   };
-
 
   return (
     <>

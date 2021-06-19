@@ -14,6 +14,7 @@ module.exports = {
       '@pages': resolve(__dirname, '../../src/pages'),
       '@services': resolve(__dirname, '../../src/services'),
       '@store': resolve(__dirname, '../../src/store'),
+      '@contexts': resolve(__dirname, '../../src/contexts'),
       '@resources': resolve(__dirname, '../../src/resources'),
       '@repositories': resolve(__dirname, '../../src/repositories'),
     }

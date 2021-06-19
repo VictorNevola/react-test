@@ -2,7 +2,7 @@ import ms from 'ms';
 
 export const setCookie = (nameCookies: string, valueCookie: string, expireDate: string) => {
     const time = ms(expireDate) / 1000;
-    document.cookie = `${nameCookies}=${valueCookie}; max-age=${time}; path=/;`;
+    document.cookie = `${nameCookies}=${valueCookie}; max-age=${time}; path=/; Secure;`;
     return true;
 }
 

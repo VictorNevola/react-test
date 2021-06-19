@@ -69,7 +69,7 @@ export const input = styled.div`
         padding: 8px 0px;
         outline: none;
         transition: ${props => props.theme.transiton.default};
-    
+        outline: none;
         &:focus {
             border-bottom: ${props => props.theme.border.inputFocus};
         }

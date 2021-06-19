@@ -1,6 +1,8 @@
-export function cnpjValidation(value: string | number ) {
+export function cnpjValidation(value: string ) {
     if (!value) return false
-  
+
+    value.replace(/^(\d{2})(\d{3})(\d{3})(\d{4})(\d{2})/, "$1 $2 $3/$4-$5");
+    
     // Aceita receber o valor como string, número ou array com todos os dígitos
     const validTypes = typeof value === 'string' || Number.isInteger(value) || Array.isArray(value);
   

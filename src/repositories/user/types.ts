@@ -19,7 +19,7 @@ export interface IuserPj {
     companyName: string,
     email: string,
     name: string,
-    phone: string
+    phone: string,
 }
 
 export interface IMessage {

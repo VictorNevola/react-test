@@ -1,7 +1,7 @@
 import useSWR from 'swr'
 import axios from 'axios';
 
-const api = axios.create({
+export const api = axios.create({
   baseURL: process.env.URL_BACKEND
 });
 interface Header {
@@ -17,5 +17,4 @@ export function useFetch<Data = any, Error = any>(url: string, header: Header) {
 
   return { data, error }
 }
-
-export default api;
+;
