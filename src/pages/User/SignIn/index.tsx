@@ -41,6 +41,7 @@ export default function SigIn(): JSX.Element {
 
         toast.success("Sucesso!",{
           autoClose: 5000,
+          onClose: () => history.push('/dashboard')
         });
 
         return setLoaderActive(false);
@@ -56,7 +57,12 @@ export default function SigIn(): JSX.Element {
 
   useEffect(() => {
 
-    if(signed) return history.push('/dashboard');
+    if(signed) {
+      toast.success("Usuário já autenticado, sendo redirecionado!", {
+        autoClose: 3000,
+        onClose: () => history.push('/dashboard')
+      })
+    }
 
   }, [signed])
 
