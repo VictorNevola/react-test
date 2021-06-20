@@ -12,7 +12,7 @@ const PrivateRoute = ({ component, ...rest }: any) => {
       {...rest}
       render={props =>
         !isLoading ?
-          (signed ? <ComponentToRender {...props} /> : <Redirect to={{ pathname: "/", state: { from: props.location } }} />)
+          (signed ? <ComponentToRender {...props} /> : <Redirect to={{ pathname: "/signin", state: { from: props.location } }} />)
           :
           <h1>Carregando context</h1>
       }
