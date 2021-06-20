@@ -1,6 +1,7 @@
 import React, { Suspense, lazy } from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import PrivateRoute from "./PrivateRoute";
+import { AuthProvider } from '@contexts/auth';
 
 const Home = lazy(() => import("@pages/"));
 const SignUp = lazy(() => import("@pages/User/SignUp"));
@@ -11,12 +12,14 @@ export default function RouteWrapper() {
 
   return (
     <Suspense fallback={<h1>Rendering...</h1>} >
-      <Router>
-        <Route exact path="/" component={Home} />
-        <Route exact path="/signup" component={SignUp} />
-        <Route exact path="/signin" component={SignIn} />
-        <PrivateRoute exact path="/dashboard" component={Dashboard} />
-      </Router>
+        <AuthProvider> 
+          <Router>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/signup" component={SignUp} />
+            <Route exact path="/signin" component={SignIn} />
+            <PrivateRoute exact path="/dashboard" component={Dashboard} />
+          </Router>
+        </AuthProvider>
     </Suspense>
   )
 }

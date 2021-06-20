@@ -6,8 +6,10 @@ export const setCookie = (nameCookies: string, valueCookie: string, expireDate: 
     return true;
 }
 
-export const captureCookie = (nameCookie: string) => {
-    const value = `; ${document.cookie}`;
-    const parts = value.split(`; ${nameCookie}=`);
-    if (parts && parts.length === 2) return parts?.pop()?.split(';').shift();
+export const captureCookie = (nameCookie: string | undefined) => {
+    if(nameCookie) {
+        const value = `; ${document.cookie}`;
+        const parts = value.split(`; ${nameCookie}=`);
+        if (parts && parts.length === 2) return parts?.pop()?.split(';').shift();
+    }
 }

@@ -1,5 +1,5 @@
 import * as S from './styles';
-import React, { useState, useRef } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 import { useForm, Controller } from "react-hook-form";
 import { Link } from 'react-router-dom';
 import { toast } from "react-toastify";
@@ -7,12 +7,12 @@ import ReactLoading from 'react-loading';
 
 import NotLoggedHeader from '@components/header/notLogged';
 
-import { autenticateUser, userLogged } from '@repositories/user';
+import { useAuth } from '@contexts/auth';
 
 import { cnpjValidation } from '@resources/validatorCnpj';
 import { emailValidator } from '@resources/validatorEmail';
 import { encrypts } from '@resources/cryptr';
-import { setCookie } from '@resources/cookies';
+import history from "@resources/history";
 
 export default function SigIn(): JSX.Element {
 
@@ -20,6 +20,7 @@ export default function SigIn(): JSX.Element {
   const { handleSubmit, errors, control } = useForm();
   const [errorUser, setErrorUser] = useState(false);
   const [loaderActive, setLoaderActive] = useState(false);
+  const { signed, Login } = useAuth();
 
   const onSubmit = async (data: { emailOrCnpj: string, password: string }) => {
 
@@ -34,12 +35,9 @@ export default function SigIn(): JSX.Element {
         password: await encrypts(data.password)
       }
 
-      const isAuthenticated = await autenticateUser(payload);
+      const isAuthenticated = await Login(payload);
       
-      if ( isAuthenticated && isAuthenticated.status === 200) {
-        setCookie(process.env.IMEALS_AUTH_COOKIE || "IMEALS", isAuthenticated.data.token.value, isAuthenticated.data.token.expireTime);
-        const user = await userLogged();
-
+      if (isAuthenticated && isAuthenticated.status === 200) {
 
         toast.success("Sucesso!",{
           autoClose: 5000,
@@ -55,6 +53,12 @@ export default function SigIn(): JSX.Element {
 
     return setErrorUser(true);
   }
+
+  useEffect(() => {
+
+    if(signed) return history.push('/dashboard');
+
+  }, [signed])
 
   return (
     <>

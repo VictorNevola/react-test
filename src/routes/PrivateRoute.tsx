@@ -1,19 +1,20 @@
 import React from "react";
-import { Route, Redirect, withRouter } from "react-router-dom";
+import { Route, Redirect } from "react-router-dom";
+import { useAuth } from "@contexts/auth";
 
-const PrivateRoute = ({ component, auth, ...rest }: any) => {
+const PrivateRoute = ({ component, ...rest }: any) => {
   let ComponentToRender = component;
+
+  const { signed, isLoading } = useAuth();
 
   return (
     <Route
       {...rest}
       render={props =>
-        auth?.isAuthenticated ?
-          <ComponentToRender {...props} />
+        !isLoading ?
+          (signed ? <ComponentToRender {...props} /> : <Redirect to={{ pathname: "/", state: { from: props.location } }} />)
           :
-          <Redirect
-            to={{ pathname: "/", state: { from: props.location } }}
-          />
+          <h1>Carregando context</h1>
       }
     />
   );
