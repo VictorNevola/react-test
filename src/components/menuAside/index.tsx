@@ -4,16 +4,13 @@ import { HiMenu } from 'react-icons/hi';
 import { AiOutlineClose } from 'react-icons/ai';
 import { LinkMenu } from './LinkMenu';
 import linksMenu from '../../data/menu.json';
+import { useAuth } from '@contexts/auth';
 
 const Menu = () => {
 
     const [activeMenuMobile, setActiveMenuMobile] = useState(false);
-    const [nameUser, setNameUser] = useState('');
-
-    useEffect(() => {
-        console.log('sucessooo')
-    }, []);
-
+    const { user } = useAuth();
+    
     return (
         <>  
             <S.BtnOpenMenu onClick={() => setActiveMenuMobile(true) }> 
@@ -33,7 +30,7 @@ const Menu = () => {
                         </svg>
                     </S.Avatar>
                     <S.Name>
-                        Olá, {nameUser}
+                        Olá, {user?.companyName.split(' ')[0]}
                     </S.Name>
                 </S.Header>
 

@@ -5,18 +5,27 @@ import { autenticateUser, userLogged } from "@repositories/user";
 import { DataPayloadAutenticateUSer, IautenticateUser } from '@repositories/user/types';
 import { AxiosResponse } from 'axios';
 
+interface User {
+  cnpj: string,
+  companyName: string,
+  email: string,
+  name: string,
+  phone: string,
+}
 interface AuthContextData {
   signed: boolean;
-  user: object | null;
+  user: User | null;
   isLoading: boolean;
   Login(user: object): Promise<AxiosResponse<IautenticateUser> | undefined>;
   Logout(): void;
 }
 
+
+
 const AuthContext = createContext<AuthContextData>({} as AuthContextData);
 
 export const AuthProvider: React.FC = ({ children }) => {
-  const [user, setUser] = useState<object | null>(null);
+  const [user, setUser] = useState<User | null>(null);
   const [isLoading, setIsLoading] = useState(true)
 
   useEffect(() => {
@@ -35,11 +44,11 @@ export const AuthProvider: React.FC = ({ children }) => {
   async function Login(userData: DataPayloadAutenticateUSer) {
     const isAuthenticate = await autenticateUser(userData);
 
-    if(isAuthenticate) {
+    if (isAuthenticate) {
       setCookie(process.env.IMEALS_AUTH_COOKIE || "IMEALS", isAuthenticate.data.token.value, isAuthenticate.data.token.expireTime);
       const user = await userLogged();
 
-      if(user) {
+      if (user) {
         setCookie(process.env.IMEALS_USER_LOGGED || "IMEALS__USER", JSON.stringify(user.data[0]), isAuthenticate.data.token.expireTime);
         setUser(user.data[0]);
       }
@@ -47,7 +56,7 @@ export const AuthProvider: React.FC = ({ children }) => {
 
     return isAuthenticate;
   }
-  
+
   function Logout() {
     setUser(null);
     setCookie(process.env.IMEALS_AUTH_COOKIE || "IMEALS", '', '-99999999');
@@ -56,12 +65,12 @@ export const AuthProvider: React.FC = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ 
-        signed: Boolean(user), 
-        user, 
-        Login, 
-        Logout, 
-        isLoading 
+      value={{
+        signed: Boolean(user),
+        user,
+        Login,
+        Logout,
+        isLoading
       }}
     >
       {children}
