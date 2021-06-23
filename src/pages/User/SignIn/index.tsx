@@ -60,7 +60,7 @@ export default function SigIn(): JSX.Element {
     if(signed) {
       toast.success("Usuário já autenticado, sendo redirecionado!", {
         autoClose: 3000,
-        onClose: () => history.push('/dashboard')
+        onClose: () => history.push('/admin')
       })
     }
 

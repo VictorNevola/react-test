@@ -13,11 +13,11 @@
         "linksSubMenu": [
             {
                 "titleLink": "Produtos",
-                "urlLink": "/admin/products"
+                "urlLink": "/products"
             },
             {
                 "titleLink": "Categorias",
-                "urlLink": "/admin/categories"
+                "urlLink": "/categories"
             }
         ]
     }

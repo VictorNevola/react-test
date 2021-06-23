@@ -8,6 +8,7 @@ const Home = lazy(() => import("@pages/"));
 const SignUp = lazy(() => import("@pages/User/SignUp"));
 const SignIn = lazy(() => import("@pages/User/SignIn"));
 const Dashboard = lazy(() => import("@pages/Admin-Init"));
+const Products = lazy(() => import("@pages/Products"));
 
 export default function RouteWrapper() {
 
@@ -19,6 +20,7 @@ export default function RouteWrapper() {
             <Route exact path="/signup" component={SignUp} />
             <Route exact path="/signin" component={SignIn} />
             <PrivateRoute exact path="/admin" component={Dashboard} />
+            <PrivateRoute exact path="/Products" component={Products} />
           </Router>
         </AuthProvider>
     </Suspense>

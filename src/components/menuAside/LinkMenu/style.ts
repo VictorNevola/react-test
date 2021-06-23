@@ -92,7 +92,7 @@ export const ItemDropdown = styled.li`
     transition: all .3s ease;
     padding-top: 14px;
     a {
-        padding-left: 3.6rem;
+        padding-left: 2.6rem;
     }
 `;
 

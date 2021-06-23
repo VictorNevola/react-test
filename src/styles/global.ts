@@ -10,11 +10,15 @@ export default createGlobalStyle`
   body {
     background: ${props => props.theme.colors.background};
     font-size: 14px;
-    color: ${props => props.theme.colors.primary};
     font-family: 'Roboto', sans-serif;
 
     a {
       text-decoration: none
     }
+
+    input, button, select {
+      outline: none;
+    }
+
   }
 `;
