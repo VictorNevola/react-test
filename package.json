@@ -6,7 +6,7 @@
   "license": "MIT",
   "scripts": {
     "build": "yarn run clean-dist && webpack --config=configs/webpack/prod.js",
-    "dev": "webpack serve --config=configs/webpack/dev.js",
+    "dev": "webpack serve --hot --config=configs/webpack/dev.js",
     "clean-dist": "rimraf dist/*",
     "test": "jest --coverage --watchAll --config=configs/jest.json"
   },
@@ -74,6 +74,7 @@
     "style-loader": "^2.0.0",
     "styled-components": "^5.3.0",
     "styled-system": "^5.1.5",
+    "svg-inline-react": "^3.2.0",
     "swr": "^0.5.6",
     "ts-loader": "^9.2.3",
     "ts-node-dev": "^1.1.6",

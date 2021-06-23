@@ -41,7 +41,7 @@ export default function SigIn(): JSX.Element {
 
         toast.success("Sucesso!",{
           autoClose: 5000,
-          onClose: () => history.push('/dashboard')
+          onClose: () => history.push('/admin')
         });
 
         return setLoaderActive(false);
