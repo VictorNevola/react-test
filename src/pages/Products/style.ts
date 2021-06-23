@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-export const InfosHeader = styled.div `
+export const InfosHeader = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -10,7 +10,7 @@ export const InfosHeader = styled.div `
     }
 `;
 
-export const SearchDiv = styled.div `
+export const SearchDiv = styled.div`
     position: relative;
     max-width: 270px;
     width: 100%;
@@ -24,7 +24,7 @@ export const SearchDiv = styled.div `
     }
 `;
 
-export const InputSearch = styled.input `
+export const InputSearch = styled.input`
     height: 46px;
     border: none;
     padding: 0 16px;
@@ -33,7 +33,7 @@ export const InputSearch = styled.input `
     width: 100%;
 `
 
-export const IconSearch = styled.span `
+export const IconSearch = styled.span`
     display: block;
     position: absolute;
     pointer-events: none;
@@ -45,7 +45,7 @@ export const IconSearch = styled.span `
     }
 `
 
-export const Buttons = styled.div `
+export const Buttons = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -57,7 +57,7 @@ export const Buttons = styled.div `
     }
 `;
 
-export const Btn = styled.div `
+export const Btn = styled.div`
     display: flex;
     align-items: center;
     background-color: rgba(65,137,230,.15);
@@ -93,7 +93,41 @@ export const Btn = styled.div `
     }
 `;
 
-export const Count = styled.small `
+export const BtnToExport = styled.button`
+
+    display: flex;
+    align-items: center;
+    color: #009ee3;
+    font-weight: 600;
+    height: 100%;
+    padding: 0px 24px;
+    background-color: rgba(65,137,230,.15);
+    box-shadow: 0 0.07em 0.125em 0 rgb(0 0 0 / 15%);
+    height: 46px;
+    border: none;
+    border-radius: 6px;
+    transition: background-color .2s ease-in;
+    cursor: pointer;
+    
+    @media(max-width: 768px){
+        width: 44%;
+        justify-content: center;
+    }
+
+    &:hover {
+        background-color: rgba(65,137,230,.2);
+    }
+
+    & svg {
+        margin-left: 12px;
+        width: 18px;
+        height: 18px;
+    }
+
+
+`;
+
+export const Count = styled.small`
     display: block;
     font-size: 14px;
     font-weight: 600;

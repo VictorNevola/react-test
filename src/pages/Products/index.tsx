@@ -1,7 +1,7 @@
 import React from 'react';
 import { AiOutlinePlus, AiOutlineExport } from 'react-icons/ai';
 import { Link } from 'react-router-dom';
-import { InfosHeader, SearchDiv, InputSearch, IconSearch, Buttons, Btn, Count } from './style';
+import { InfosHeader, SearchDiv, InputSearch, IconSearch, Buttons, Btn, BtnToExport, Count } from './style';
 import Layout from '@components/layout/';
 import Table from '@components/table/';
 
@@ -26,7 +26,7 @@ export default function Products() {
               </Link>
             </Btn>
 
-            <Btn> Exportar <AiOutlineExport /></Btn>
+            <BtnToExport> Exportar <AiOutlineExport /></BtnToExport>
           </Buttons>
         </InfosHeader>
 

@@ -1,13 +1,15 @@
 import { Item, HR, DropDownIcon, OpenDropdown, ListDropDown, ItemDropdown } from './style';
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { NavLink } from 'react-router-dom';
 import { IlinkMenu } from '../types';
 import InlineSVG from 'svg-inline-react';
 
 export const LinkMenu = ({ titleLink, urlLink, svgLink, hasSubMenu, linksSubMenu }: IlinkMenu) => {
 
-    const [activeDropdown, setActiveDropdown] = useState(false);
+    const [activeDropdown, setActiveDropdown] = useState(JSON.parse(localStorage.getItem("menuDropDownIsActive") || "false"));
     const setDropdown = () => activeDropdown ? setActiveDropdown(false) : setActiveDropdown(true);
+
+    useEffect(() => localStorage.setItem("menuDropDownIsActive", JSON.stringify(activeDropdown)),[activeDropdown]);
 
     return (
         <>
